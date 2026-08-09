@@ -1,40 +1,34 @@
-import { AMAZON_BOOK_URL } from "@/lib/links";
+import Logo from "./components/Logo";
+import SignupForm from "./components/SignupForm";
 
 export default function Home() {
   return (
-    <main className="shell">
-      <div className="stack">
-        <p className="eyebrow">Monochrome Worlds</p>
-        <h1 className="wordmark">
-          Overgrown
-          <span className="second">Worlds</span>
+    <main className="landing">
+      <section className="landing-card">
+        <Logo />
+
+        <p className="eyebrow anim" style={{ "--i": 0 } as React.CSSProperties}>
+          Free printable coloring pages
+        </p>
+
+        <h1 className="wordmark anim" style={{ "--i": 1 } as React.CSSProperties}>
+          Color a world
+          <span className="second">reclaimed by nature</span>
         </h1>
-      </div>
 
-      <div className="rule" />
+        <p className="lede anim" style={{ "--i": 2 } as React.CSSProperties}>
+          Join the list and I&apos;ll send you a free set of printable pages from
+          the series.
+        </p>
 
-      <p className="lede">
-        Fifty of the world&apos;s places, imagined after nature took them back.
-        The Taj Mahal under wildflowers. The Colosseum full of green. Quiet
-        worlds to color in, one page at a time.
-      </p>
+        <div className="anim signup-wrap" style={{ "--i": 3 } as React.CSSProperties}>
+          <SignupForm />
+        </div>
 
-      <div className="actions">
-        {AMAZON_BOOK_URL ? (
-          <a className="btn btn-primary" href={AMAZON_BOOK_URL}>
-            Find the book on Amazon
-          </a>
-        ) : (
-          <span className="note">Book one is on its way. Check back soon.</span>
-        )}
-        <a className="btn btn-ghost" href="/signup">
-          Get the free pages
-        </a>
-      </div>
-
-      <p className="tagline">One color. Zero stress.</p>
-
-      <footer className="footer">Monochrome Worlds</footer>
+        <div className="landing-foot anim" style={{ "--i": 4 } as React.CSSProperties}>
+          <span className="footer">Monochrome Worlds</span>
+        </div>
+      </section>
     </main>
   );
 }

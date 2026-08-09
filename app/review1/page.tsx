@@ -40,7 +40,7 @@ export default function Review1() {
           </span>
         )}
         <a className="btn btn-ghost" href="/">
-          See the series
+          Monochrome Worlds
         </a>
       </div>
 

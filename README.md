@@ -2,8 +2,7 @@
 
 Holding site for monochromeworlds.com.
 
-- `/` — the series landing page, where the printed book QR codes point
-- `/signup` — the lead-magnet page: email signup for the free bonus pages
+- `/` — the landing page: email signup for the free bonus pages (lead magnet)
 - `/review1` — the review page for book one (`/review2` for book two, etc.)
 
 No database and no build steps beyond Next.js. Email signup posts straight to
@@ -43,8 +42,9 @@ early scanner never hits a dead end.
 
 ## The email signup
 
-The `/signup` page collects emails and hands them to your email provider,
-whose automation delivers the bonus PDF. Set two variables in Vercel:
+The landing page (`/`) collects emails and hands them to your email provider
+(MailerLite), whose automation delivers the bonus PDF. The endpoint defaults to
+this form's MailerLite URL in `lib/links.ts`; override in Vercel if it changes:
 
 ```
 NEXT_PUBLIC_SIGNUP_ENDPOINT      = <your provider's form action URL>

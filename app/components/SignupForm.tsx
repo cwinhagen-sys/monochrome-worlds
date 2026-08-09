@@ -36,6 +36,9 @@ export default function SignupForm() {
     try {
       const body = new FormData();
       body.append(SIGNUP_EMAIL_FIELD, value);
+      // MailerLite's subscribe endpoint expects these; harmless for others.
+      body.append("ml-submit", "1");
+      body.append("anticsrf", "true");
       // Most hosted signup endpoints don't return CORS headers, so we can't
       // read the response — a completed no-cors POST is our success signal.
       await fetch(SIGNUP_ENDPOINT, { method: "POST", mode: "no-cors", body });
