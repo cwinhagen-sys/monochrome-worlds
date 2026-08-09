@@ -42,18 +42,27 @@ early scanner never hits a dead end.
 
 ## The email signup
 
-The landing page (`/`) collects emails and hands them to your email provider
-(MailerLite), whose automation delivers the bonus PDF. The endpoint defaults to
-this form's MailerLite URL in `lib/links.ts`; override in Vercel if it changes:
+The landing page posts to `/api/subscribe`, which talks to MailerLite from the
+server. That matters: a browser can't read a cross-origin form POST, so a
+client-only submit reports success even when nothing was stored. Going through
+the server means a failed signup shows a real error instead of a fake "Sent!".
+
+Set these in Vercel → Settings → Environment Variables (no `NEXT_PUBLIC_`
+prefix — the token must stay server-side), then redeploy:
 
 ```
-NEXT_PUBLIC_SIGNUP_ENDPOINT      = <your provider's form action URL>
-NEXT_PUBLIC_SIGNUP_EMAIL_FIELD   = <the email field name that provider expects>
+MAILERLITE_API_KEY    = <MailerLite → Integrations → API → generate a token>
+MAILERLITE_GROUP_ID   = <the group the subscriber should join>
 ```
 
-Field name by provider: Kit → `email_address`, Mailchimp → `EMAIL`,
-MailerLite → `fields[email]` (default is `email`). Leave the endpoint empty and
-the form still works visually and never dead-ends. See `.env.local.example`.
+Point your MailerLite automation's "when subscriber joins group" trigger at
+that group; the automation is what emails the bonus PDF. If double opt-in is
+on, subscribers get a confirmation email first and the automation only fires
+after they confirm.
+
+No API token? Set `SIGNUP_FORM_ENDPOINT` to the embedded form's `action` URL
+(MailerLite → your form → Embed → HTML) instead. Until one of them is set the
+form returns a clear "not connected yet" error rather than pretending.
 
 The logo: drop `logo.png` into `public/` and follow `public/README.md` to swap
 out the placeholder mark.
