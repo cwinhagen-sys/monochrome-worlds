@@ -16,13 +16,26 @@ import { NextResponse } from "next/server";
  */
 
 // Bumped whenever this file changes, so GET tells us which build is live.
-const VERSION = "2026-08-09-groups";
+const VERSION = "2026-08-09-groupfix";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const API_KEY = process.env.MAILERLITE_API_KEY ?? "";
-const GROUP_ID = process.env.MAILERLITE_GROUP_ID ?? "";
 const FORM_ENDPOINT = process.env.SIGNUP_FORM_ENDPOINT ?? "";
+
+/**
+ * The group id is read off a MailerLite URL, so it tends to arrive with the
+ * surrounding query string attached ("...&group=123"). Pull the id out rather
+ * than sending the whole thing, which MailerLite rejects with a 422.
+ */
+function normalizeGroupId(raw: string): string {
+  const value = raw.trim();
+  const fromQuery = value.match(/[?&]group=(\d+)/);
+  if (fromQuery) return fromQuery[1];
+  return /^\d+$/.test(value) ? value : "";
+}
+
+const GROUP_ID = normalizeGroupId(process.env.MAILERLITE_GROUP_ID ?? "");
 
 /**
  * Diagnostics. Open /api/subscribe in a browser:
