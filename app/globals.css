@@ -4,6 +4,7 @@
   --line: #2a2a2a;
   --muted: #8c8c8c;
   --gold: #c9a24a;
+  --marigold: #eaa92e;
 
   --display: "Archivo Black", "Helvetica Neue", Arial, sans-serif;
   --serif: "Cormorant Garamond", Georgia, serif;
@@ -175,6 +176,343 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 22px;
+}
+
+/* ---------- landing (lead magnet) ---------- */
+
+.landing {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* soft marigold glow bleeding up from behind the card */
+.landing::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: min(560px, 90vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(234, 169, 46, 0.14),
+    transparent 62%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.landing-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 22px;
+}
+
+.logo-wrap {
+  display: block;
+  width: clamp(96px, 22vw, 132px);
+  margin-bottom: 4px;
+  animation: logo-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.logo-mark,
+.logo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.45));
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-wrap:hover .logo-mark,
+.logo-wrap:hover .logo-img {
+  transform: rotate(-6deg) scale(1.04);
+}
+
+.landing .wordmark {
+  font-family: var(--serif);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.02;
+  font-size: clamp(42px, 9vw, 74px);
+}
+
+.landing .wordmark .second {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--marigold);
+  font-size: clamp(28px, 6vw, 50px);
+  margin-top: 2px;
+}
+
+.landing .eyebrow {
+  color: var(--marigold);
+  letter-spacing: 0.28em;
+}
+
+.landing .lede {
+  max-width: 42ch;
+}
+
+.signup-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.landing-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.link-quiet {
+  font-family: var(--ui);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link-quiet:hover {
+  color: var(--paper);
+}
+
+/* ---------- signup form ---------- */
+
+.signup {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.signup-row {
+  display: flex;
+  gap: 10px;
+}
+
+.signup-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--ui);
+  font-size: 15px;
+  color: var(--paper);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  padding: 14px 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.signup-input::placeholder {
+  color: #6f6f6f;
+}
+
+.signup-input:focus {
+  outline: none;
+  border-color: var(--marigold);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(234, 169, 46, 0.18);
+}
+
+.signup-btn {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+.signup-btn:active {
+  transform: scale(0.97);
+}
+
+/* click ripple */
+.signup-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.28);
+  opacity: 0;
+  transform: scale(1);
+}
+
+.signup-btn:active::after {
+  animation: ripple 0.5s ease-out;
+}
+
+.signup-btn[data-loading="true"] .signup-btn-label {
+  opacity: 0;
+}
+
+.signup-spinner {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 17px;
+  height: 17px;
+  border: 2px solid rgba(10, 10, 10, 0.25);
+  border-top-color: var(--ink);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.signup-btn[data-loading="true"] .signup-spinner {
+  opacity: 1;
+  animation: spin 0.7s linear infinite;
+}
+
+.signup-note {
+  font-family: var(--ui);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.signup-note--error {
+  color: #e6a5a5;
+}
+
+/* success state */
+.signup--done {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 440px;
+  padding: 16px 18px;
+  border: 1px solid rgba(234, 169, 46, 0.4);
+  border-radius: 3px;
+  background: rgba(234, 169, 46, 0.07);
+  animation: fade-up 0.5s ease both;
+}
+
+.signup-check {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--marigold);
+  animation: pop 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.signup-check path {
+  stroke-dasharray: 28;
+  stroke-dashoffset: 28;
+  animation: draw 0.45s ease 0.15s forwards;
+}
+
+.signup-done-text {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.4;
+  color: #f0ede6;
+  text-align: left;
+}
+
+@media (max-width: 460px) {
+  .signup-row {
+    flex-direction: column;
+  }
+  .signup-btn {
+    width: 100%;
+  }
+}
+
+/* ---------- entrance animations ---------- */
+
+.anim {
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.18s + var(--i, 0) * 0.09s);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logo-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(34);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

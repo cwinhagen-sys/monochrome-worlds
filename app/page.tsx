@@ -27,6 +27,9 @@ export default function Home() {
         ) : (
           <span className="note">Book one is on its way. Check back soon.</span>
         )}
+        <a className="btn btn-ghost" href="/signup">
+          Get the free pages
+        </a>
       </div>
 
       <p className="tagline">One color. Zero stress.</p>
