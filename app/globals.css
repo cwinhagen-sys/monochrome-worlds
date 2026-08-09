@@ -442,86 +442,40 @@ a {
   text-align: left;
 }
 
-/* ---------- full-screen success takeover ---------- */
+/* ---------- success view (replaces the whole page) ---------- */
 
-.success-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  background: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 24px;
-  text-align: center;
-  overflow: hidden;
-  animation: screen-in 0.4s ease both;
-}
-
-.success-screen::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(680px, 120vw);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(234, 169, 46, 0.12), transparent 60%);
-  pointer-events: none;
-}
-
-.success-inner {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-  max-width: 32ch;
-}
-
-.success-badge {
-  display: grid;
-  place-items: center;
-  width: 84px;
-  height: 84px;
-  border-radius: 50%;
-  color: var(--ink);
-  background: var(--marigold);
-  box-shadow: 0 18px 44px rgba(234, 169, 46, 0.28);
-  animation: pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
-}
-
-.success-badge path {
-  stroke-dasharray: 30;
-  stroke-dashoffset: 30;
-  animation: draw 0.5s ease 0.4s forwards;
+.success-card {
+  gap: 28px;
+  max-width: 30ch;
 }
 
 .success-title {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(30px, 6vw, 48px);
-  line-height: 1.08;
+  font-size: clamp(30px, 6vw, 46px);
+  line-height: 1.12;
   letter-spacing: 0.01em;
   color: var(--paper);
   text-wrap: balance;
-  animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
 }
 
-.success-sub {
-  font-family: var(--ui);
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--muted);
-  animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+.success-rule {
+  width: 60px;
+  height: 1px;
+  background: var(--marigold);
+  transform-origin: center;
+  animation: rule-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
 }
 
-@keyframes screen-in {
+@keyframes rule-in {
   from {
     opacity: 0;
+    transform: scaleX(0);
   }
   to {
     opacity: 1;
+    transform: scaleX(1);
   }
 }
 

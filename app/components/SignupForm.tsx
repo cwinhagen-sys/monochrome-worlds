@@ -7,7 +7,7 @@ type Status = "idle" | "loading" | "success" | "error";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function SignupForm() {
+export default function SignupForm({ onSuccess }: { onSuccess: () => void }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -27,7 +27,7 @@ export default function SignupForm() {
     // the site. Swap NEXT_PUBLIC_SIGNUP_ENDPOINT in and this becomes real.
     if (!SIGNUP_ENDPOINT) {
       setStatus("success");
-      setMessage("You're on the list. Your free pages are on the way.");
+      onSuccess();
       return;
     }
 
@@ -43,36 +43,11 @@ export default function SignupForm() {
       // read the response — a completed no-cors POST is our success signal.
       await fetch(SIGNUP_ENDPOINT, { method: "POST", mode: "no-cors", body });
       setStatus("success");
-      setMessage("Check your inbox — your free pages are on the way.");
+      onSuccess();
     } catch {
       setStatus("error");
       setMessage("Something went wrong. Please try again.");
     }
-  }
-
-  if (status === "success") {
-    return (
-      <div className="success-screen" role="status" aria-live="polite">
-        <div className="success-inner">
-          <span className="success-badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="42" height="42">
-              <path
-                d="M4 12.5 L10 18.5 L20 6.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <h2 className="success-title">Sent! Check your inbox.</h2>
-          <p className="success-sub">
-            Your free pages are on the way. Peek in spam or junk just in case.
-          </p>
-        </div>
-      </div>
-    );
   }
 
   return (
