@@ -16,7 +16,7 @@ import { NextResponse } from "next/server";
  */
 
 // Bumped whenever this file changes, so GET tells us which build is live.
-const VERSION = "2026-08-09-diag";
+const VERSION = "2026-08-09-groups";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -30,14 +30,46 @@ const FORM_ENDPOINT = process.env.SIGNUP_FORM_ENDPOINT ?? "";
  *   hasApiKey false  → Vercel env var missing, or set after the last deploy
  * Only booleans and shapes are reported — never the token itself.
  */
-export async function GET() {
-  return NextResponse.json({
+export async function GET(request: Request) {
+  const base = {
     version: VERSION,
     hasApiKey: Boolean(API_KEY),
     apiKeyLength: API_KEY.length,
     apiKeyLooksLikeMailerLite: API_KEY.startsWith("ey"),
     hasGroupId: Boolean(GROUP_ID),
     hasFormEndpoint: Boolean(FORM_ENDPOINT),
+  };
+
+  // /api/subscribe?groups=1 — asks MailerLite which groups actually exist and
+  // whether MAILERLITE_GROUP_ID is one of them. A signup returning 422 is
+  // almost always a group id that doesn't match any real group.
+  if (new URL(request.url).searchParams.get("groups") !== "1" || !API_KEY) {
+    return NextResponse.json(base);
+  }
+
+  const res = await fetch("https://connect.mailerlite.com/api/groups?limit=50", {
+    headers: { Authorization: `Bearer ${API_KEY}`, Accept: "application/json" },
+  });
+
+  if (!res.ok) {
+    return NextResponse.json({
+      ...base,
+      groupsError: `MailerLite returned ${res.status} when listing groups.`,
+    });
+  }
+
+  const payload = await res.json();
+  const groups: Array<{ id: string; name: string }> = (payload?.data ?? []).map(
+    (g: { id: string; name: string }) => ({ id: String(g.id), name: g.name })
+  );
+
+  return NextResponse.json({
+    ...base,
+    configuredGroupId: GROUP_ID,
+    configuredGroupMatches: groups.some((g) => g.id === GROUP_ID),
+    configuredGroupName:
+      groups.find((g) => g.id === GROUP_ID)?.name ?? "(no group with that id)",
+    yourGroups: groups,
   });
 }
 
@@ -80,7 +112,9 @@ export async function POST(request: Request) {
         error:
           res.status === 401
             ? "Signup key was rejected (401). Check MAILERLITE_API_KEY."
-            : `MailerLite said ${res.status}. Please try again.`,
+            : res.status === 422
+              ? "MailerLite rejected the data (422) — MAILERLITE_GROUP_ID likely doesn't match a real group. Check /api/subscribe?groups=1."
+              : `MailerLite said ${res.status}. Please try again.`,
         status: res.status,
         detail,
       },
