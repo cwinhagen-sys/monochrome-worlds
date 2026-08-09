@@ -52,20 +52,25 @@ export default function SignupForm() {
 
   if (status === "success") {
     return (
-      <div className="signup signup--done" role="status" aria-live="polite">
-        <span className="signup-check" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="22" height="22">
-            <path
-              d="M4 12.5 L10 18.5 L20 6.5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-        <p className="signup-done-text">{message}</p>
+      <div className="success-screen" role="status" aria-live="polite">
+        <div className="success-inner">
+          <span className="success-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="42" height="42">
+              <path
+                d="M4 12.5 L10 18.5 L20 6.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+          <h2 className="success-title">Sent! Check your inbox.</h2>
+          <p className="success-sub">
+            Your free pages are on the way. Peek in spam or junk just in case.
+          </p>
+        </div>
       </div>
     );
   }
