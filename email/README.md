@@ -1,5 +1,9 @@
 # Email templates
 
+Sending from a Gmail address puts these emails in spam. See
+[DELIVERABILITY.md](./DELIVERABILITY.md) for setting up
+`hello@monochromeworlds.com` as the sender.
+
 ## `bonus-pdf.html` — the free-pages delivery email
 
 Sent by the MailerLite automation that fires when someone joins the BonusPDF
