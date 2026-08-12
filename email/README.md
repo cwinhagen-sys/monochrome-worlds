@@ -18,6 +18,32 @@ group.
    it at your real file
 5. Save and close — the step turns green and the automation can be activated
 
+### Testing the flow
+
+Signing up twice with the same address proves nothing: an address already in
+the group never fires "joins group" again, so the automation doesn't re-run.
+
+Use plus-addressing for an endless supply of fresh addresses that all land in
+the same inbox — `you+test1@gmail.com`, `you+test2@gmail.com`. Everything after
+the `+` is ignored on delivery but makes a distinct subscriber. (Otherwise:
+delete the subscriber in MailerLite and sign up again.)
+
+When no email arrives, walk the chain in order — wherever it breaks is the
+fault:
+
+1. Subscriber appears under **Subscribers** (filter **All**, not Active) — if
+   not, the site never reached MailerLite; check `/api/subscribe?groups=1`
+2. **BonusPDF** is listed under their Groups — if not, `MAILERLITE_GROUP_ID` is
+   pointing at the wrong group
+3. The automation shows activity — if not, it isn't Active (pausing it to edit
+   is easy to forget)
+4. The automation reports a send — if not, the email step is incomplete
+5. It's in the inbox, not spam — see [DELIVERABILITY.md](./DELIVERABILITY.md)
+
+The **Test** button in the automation editor sends a preview to yourself. Good
+for checking the design and where it lands, but it skips the site → group →
+trigger path entirely.
+
 ### Notes
 
 - Tables and inline styles are deliberate: email clients strip `<style>` blocks
