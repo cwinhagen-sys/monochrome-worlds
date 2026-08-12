@@ -21,9 +21,10 @@ export default function BeforeAfter({
 
   return (
     <div className="ba" style={{ "--pos": `${pos}%` } as React.CSSProperties}>
+      {/* The finished plate leads; drag right to uncover the page you get. */}
       {/* eslint-disable @next/next/no-img-element */}
-      <img className="ba-base" src={color} alt={`${title}, finished in one color`} />
-      <img className="ba-top" src={line} alt={`${title}, ready to color`} />
+      <img className="ba-base" src={line} alt={`${title}, ready to color`} />
+      <img className="ba-top" src={color} alt={`${title}, finished in one color`} />
       {/* eslint-enable @next/next/no-img-element */}
 
       <span className="ba-handle" aria-hidden="true">
@@ -40,11 +41,11 @@ export default function BeforeAfter({
         aria-label={`Reveal how ${title} looks finished`}
       />
 
-      <span className="ba-tag ba-tag--line" aria-hidden="true">
-        Your page
-      </span>
-      <span className="ba-tag ba-tag--color" aria-hidden="true">
+      <span className="ba-tag ba-tag--left" aria-hidden="true">
         Finished
+      </span>
+      <span className="ba-tag ba-tag--right" aria-hidden="true">
+        Your page
       </span>
     </div>
   );

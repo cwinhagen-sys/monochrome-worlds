@@ -1,11 +1,12 @@
 /**
- * The plates shown in the before/after gallery.
+ * A plate is one spread in a book. The images live in public/gallery/ as a
+ * pair of the SAME artwork at the SAME dimensions:
  *
- * Each plate needs two images of the SAME artwork at the SAME dimensions:
  *   <slug>-line.png       the printable page, uncolored
- *   <slug>-complete.png   the same page, finished
+ *   <slug>-complete.png   the same page, finished in one color
  *
- * Drop both in public/gallery/ and add an entry here. See public/gallery/README.md.
+ * Plate slugs are unique across the whole series, so the folder stays flat.
+ * See public/gallery/README.md. Plates are listed per book in lib/books.ts.
  */
 
 export type Plate = {
@@ -14,27 +15,6 @@ export type Plate = {
   place: string;
   blurb: string;
 };
-
-export const PLATES: Plate[] = [
-  {
-    slug: "wall",
-    title: "The Great Wall",
-    place: "Jinshanling, China",
-    blurb: "Watchtowers half-swallowed, the ramparts running off into the trees.",
-  },
-  {
-    slug: "sphinx",
-    title: "The Sphinx",
-    place: "Giza, Egypt",
-    blurb: "Sand giving way to meadow, the paws deep in wild grass.",
-  },
-  {
-    slug: "burj",
-    title: "Burj Khalifa",
-    place: "Dubai, UAE",
-    blurb: "Glass and steel gone to vine — the tallest trellis ever built.",
-  },
-];
 
 export const linePath = (slug: string) => `/gallery/${slug}-line.png`;
 export const colorPath = (slug: string) => `/gallery/${slug}-complete.png`;

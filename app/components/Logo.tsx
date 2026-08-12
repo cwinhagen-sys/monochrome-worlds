@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useImageFallback } from "./useImageFallback";
 
 /**
  * Shows the real logo from /public/logo.png the moment that file exists.
@@ -8,7 +8,7 @@ import { useState } from "react";
  * placeholder mark, so the page never shows a broken image.
  */
 export default function Logo() {
-  const [failed, setFailed] = useState(false);
+  const { ref, failed, onError } = useImageFallback();
 
   return (
     <span className="logo-wrap">
@@ -48,10 +48,11 @@ export default function Logo() {
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img
+          ref={ref}
           className="logo-img"
           src="/logo.png"
           alt="Monochrome Worlds"
-          onError={() => setFailed(true)}
+          onError={onError}
         />
       )}
     </span>
