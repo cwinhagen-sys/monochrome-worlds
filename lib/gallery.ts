@@ -20,19 +20,19 @@ export const PLATES: Plate[] = [
     slug: "wall",
     title: "The Great Wall",
     place: "Jinshanling, China",
-    blurb: "Watchtowers half-swallowed, the ramparts one long green ridge.",
+    blurb: "Watchtowers half-swallowed, the ramparts running off into the trees.",
   },
   {
     slug: "sphinx",
     title: "The Sphinx",
     place: "Giza, Egypt",
-    blurb: "Sand giving way to grass, the paws deep in wildflowers.",
+    blurb: "Sand giving way to meadow, the paws deep in wild grass.",
   },
   {
     slug: "burj",
     title: "Burj Khalifa",
     place: "Dubai, UAE",
-    blurb: "Glass gone to moss — the tallest trellis ever built.",
+    blurb: "Glass and steel gone to vine — the tallest trellis ever built.",
   },
 ];
 

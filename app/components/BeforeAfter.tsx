@@ -22,7 +22,7 @@ export default function BeforeAfter({
   return (
     <div className="ba" style={{ "--pos": `${pos}%` } as React.CSSProperties}>
       {/* eslint-disable @next/next/no-img-element */}
-      <img className="ba-base" src={color} alt={`${title}, colored in`} />
+      <img className="ba-base" src={color} alt={`${title}, finished in one color`} />
       <img className="ba-top" src={line} alt={`${title}, ready to color`} />
       {/* eslint-enable @next/next/no-img-element */}
 
@@ -37,14 +37,14 @@ export default function BeforeAfter({
         max={100}
         value={pos}
         onChange={(event) => setPos(Number(event.target.value))}
-        aria-label={`Reveal how ${title} looks colored in`}
+        aria-label={`Reveal how ${title} looks finished`}
       />
 
       <span className="ba-tag ba-tag--line" aria-hidden="true">
         Your page
       </span>
       <span className="ba-tag ba-tag--color" aria-hidden="true">
-        Colored in
+        Finished
       </span>
     </div>
   );
