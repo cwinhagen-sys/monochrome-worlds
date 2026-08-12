@@ -15,6 +15,9 @@ export default function Landing() {
   if (done) {
     return (
       <main className="landing">
+      <a className="back-mark" href="/">
+        Monochrome Worlds
+      </a>
         <section className="landing-card success-card" role="status" aria-live="polite">
           <Logo />
           <h1 className="success-title">Sent! Check your Inbox now.</h1>
@@ -26,6 +29,9 @@ export default function Landing() {
 
   return (
     <main className="landing">
+      <a className="back-mark" href="/">
+        Monochrome Worlds
+      </a>
       <section className="landing-card">
         <Logo />
 

@@ -1,3 +1,14 @@
+/* Kafkus — the cover face. Drop the web files in public/fonts/ (see the README
+   there) and every display heading picks it up. Until then the stack falls
+   through to Archivo Black, so nothing breaks while the licence is sorted. */
+@font-face {
+  font-family: "Kafkus";
+  src: url("/fonts/kafkus.woff2") format("woff2"),
+       url("/fonts/kafkus.woff") format("woff");
+  font-weight: 400 900;
+  font-display: swap;
+}
+
 :root {
   --ink: #0a0a0a;
   --paper: #f7f6f3;
@@ -6,9 +17,9 @@
   --gold: #c9a24a;
   --marigold: #eaa92e;
 
-  --display: "Archivo Black", "Helvetica Neue", Arial, sans-serif;
+  --display: "Kafkus", "Archivo Black", "Helvetica Neue", Arial, sans-serif;
   --serif: "Cormorant Garamond", Georgia, serif;
-  --ui: "Inter", system-ui, -apple-system, sans-serif;
+  --ui: "Archivo", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -744,6 +755,39 @@ a {
   margin-top: 10px;
 }
 
+.book-title-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 26px);
+}
+
+.volume-mark {
+  flex: 0 0 auto;
+  width: clamp(58px, 9cqw, 92px);
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.back-mark {
+  position: absolute;
+  top: clamp(18px, 3vw, 30px);
+  left: clamp(18px, 4vw, 34px);
+  z-index: 2;
+  font-family: var(--ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-mark:hover {
+  color: var(--paper);
+}
+
 .book-tagline {
   font-family: var(--serif);
   font-style: italic;
@@ -752,6 +796,10 @@ a {
 }
 
 @media (max-width: 720px) {
+  .book-title-row {
+    flex-direction: column;
+    gap: 14px;
+  }
   .book-hero {
     grid-template-columns: 1fr;
     justify-items: center;

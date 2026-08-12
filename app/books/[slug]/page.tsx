@@ -4,6 +4,7 @@ import { BOOKS, bookBySlug, amazonUrl } from "@/lib/books";
 import { linePath, colorPath } from "@/lib/gallery";
 import SiteHeader from "@/app/components/SiteHeader";
 import BookCover from "@/app/components/BookCover";
+import VolumeMark from "@/app/components/VolumeMark";
 import BeforeAfter from "@/app/components/BeforeAfter";
 
 export function generateStaticParams() {
@@ -45,10 +46,13 @@ export default async function BookPage({
 
           <div className="book-intro">
             <p className="eyebrow">{book.volume}</p>
-            <h1 className="wordmark">
-              {book.title}
-              <span className="second">Worlds</span>
-            </h1>
+            <div className="book-title-row">
+              <h1 className="wordmark">
+                {book.title}
+                <span className="second">Worlds</span>
+              </h1>
+              <VolumeMark slug={book.slug} title={book.title} />
+            </div>
             <p className="book-tagline">{book.tagline}</p>
             <p className="lede">{book.blurb}</p>
 
