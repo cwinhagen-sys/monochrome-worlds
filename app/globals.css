@@ -763,7 +763,7 @@ a {
 
 .volume-mark {
   flex: 0 0 auto;
-  width: clamp(58px, 9cqw, 92px);
+  width: clamp(96px, 19cqw, 180px);
   height: auto;
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
   animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
