@@ -8,18 +8,18 @@ lets visitors drag between them.
 Every plate needs **two images of the same artwork**:
 
 ```
-public/gallery/<slug>-line.jpg     the printable page, uncolored
-public/gallery/<slug>-color.jpg    the same page, colored in
+public/gallery/<slug>-line.png     the printable page, uncolored
+public/gallery/<slug>-complete.png    the same page, colored in
 ```
 
 Then add an entry to `PLATES` in `lib/gallery.ts`:
 
 ```ts
 {
-  slug: "taj-mahal",
-  title: "Taj Mahal",
-  place: "Agra, India",
-  blurb: "Marble under wildflowers, the reflecting pool gone to reed.",
+  slug: "wall",
+  title: "The Great Wall",
+  place: "Jinshanling, China",
+  blurb: "Watchtowers half-swallowed, the ramparts one long green ridge.",
 }
 ```
 
@@ -38,8 +38,8 @@ the same canvas.
 
 - **Width**: around 1200px. Larger just costs load time — they're displayed at
   roughly 350px wide.
-- **Format**: JPEG at quality ~80. The current placeholders are 60–90 KB each;
-  aim for that ballpark.
+- **Format**: PNG suits flat line art; use JPEG (quality ~80) for the colored
+  versions if PNG gets heavy. Aim for well under ~300 KB per file.
 - **Portrait** matches the book. Any consistent ratio works — the layout adapts.
 
 A page carrying six full-resolution scans gets slow on a phone, so it's worth

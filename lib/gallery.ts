@@ -2,8 +2,8 @@
  * The plates shown in the before/after gallery.
  *
  * Each plate needs two images of the SAME artwork at the SAME dimensions:
- *   <slug>-line.jpg    the printable page, uncolored
- *   <slug>-color.jpg   the same page, finished
+ *   <slug>-line.png       the printable page, uncolored
+ *   <slug>-complete.png   the same page, finished
  *
  * Drop both in public/gallery/ and add an entry here. See public/gallery/README.md.
  */
@@ -17,24 +17,24 @@ export type Plate = {
 
 export const PLATES: Plate[] = [
   {
-    slug: "taj-mahal",
-    title: "Taj Mahal",
-    place: "Agra, India",
-    blurb: "Marble under wildflowers, the reflecting pool gone to reed.",
+    slug: "wall",
+    title: "The Great Wall",
+    place: "Jinshanling, China",
+    blurb: "Watchtowers half-swallowed, the ramparts one long green ridge.",
   },
   {
-    slug: "colosseum",
-    title: "The Colosseum",
-    place: "Rome, Italy",
-    blurb: "Arches full of green, the arena floor a meadow.",
+    slug: "sphinx",
+    title: "The Sphinx",
+    place: "Giza, Egypt",
+    blurb: "Sand giving way to grass, the paws deep in wildflowers.",
   },
   {
-    slug: "machu-picchu",
-    title: "Machu Picchu",
-    place: "Cusco, Peru",
-    blurb: "Terraces the forest never really let go of.",
+    slug: "burj",
+    title: "Burj Khalifa",
+    place: "Dubai, UAE",
+    blurb: "Glass gone to moss — the tallest trellis ever built.",
   },
 ];
 
-export const linePath = (slug: string) => `/gallery/${slug}-line.jpg`;
-export const colorPath = (slug: string) => `/gallery/${slug}-color.jpg`;
+export const linePath = (slug: string) => `/gallery/${slug}-line.png`;
+export const colorPath = (slug: string) => `/gallery/${slug}-complete.png`;
