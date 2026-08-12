@@ -11,10 +11,12 @@ allowed to send on your behalf.
 There are two separate jobs, and they're easy to confuse:
 
 - **Sending as `hello@`** — DNS records that authenticate MailerLite. This is
-  what stops the spam foldering.
-- **Receiving at `hello@`** — a mailbox or forwarding, so replies reach you.
-  Set this up too: a from-address that bounces looks bad and hurts your sender
-  reputation.
+  what stops the spam foldering, and it's the only part that's required.
+- **Receiving at `hello@`** — a mailbox or forwarding. Not needed for
+  deliverability, but worth the two free minutes: MailerLite often emails a
+  confirmation link to a new sender address, and readers reply to these emails
+  ("the PDF won't open"). Without it, those replies bounce and you never see
+  them.
 
 DNS for `monochromeworlds.com` lives at Porkbun, so every record below is added
 there (Porkbun → your domain → **DNS**). These records are independent of the
