@@ -2,8 +2,14 @@
 
 Holding site for monochromeworlds.com.
 
-- `/` — the landing page: email signup for the free bonus pages (lead magnet)
+- `/` — the homepage: hero, the drag-to-reveal gallery, and a signup section
+- `/free` — the bare lead-magnet page. One job, no distractions: this is the
+  link for ads, QR codes and social bios, and it converts better than the
+  homepage precisely because there's nothing else to do on it
 - `/review1` — the review page for book one (`/review2` for book two, etc.)
+
+Gallery plates live in `lib/gallery.ts` and `public/gallery/` — see
+[public/gallery/README.md](./public/gallery/README.md) for adding your own.
 
 No database and no build steps beyond Next.js. Email signup posts straight to
 your email provider's form endpoint (see below).

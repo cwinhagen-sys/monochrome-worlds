@@ -488,6 +488,274 @@ a {
   }
 }
 
+/* ---------- homepage ---------- */
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  min-height: 92dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 22px;
+  padding: 72px 22px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  width: min(620px, 95vw);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(234, 169, 46, 0.13), transparent 62%);
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+}
+
+.section {
+  padding: clamp(64px, 10vw, 120px) 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+}
+
+.section--quiet {
+  background: #0f0f0f;
+  border-top: 1px solid #202020;
+  border-bottom: 1px solid #202020;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  max-width: 56ch;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1.14;
+  color: var(--paper);
+  text-wrap: balance;
+}
+
+/* ---------- gallery ---------- */
+
+.plates {
+  width: 100%;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(28px, 4vw, 44px);
+}
+
+.plate {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.plate-cap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.plate-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--paper);
+}
+
+.plate-place {
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--marigold);
+}
+
+.plate-blurb {
+  font-family: var(--ui);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ---------- before / after ---------- */
+
+.ba {
+  position: relative;
+  width: 100%;
+  border: 1px solid #2b2b2b;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #141414;
+  line-height: 0;
+  touch-action: pan-y;
+}
+
+.ba-base,
+.ba-top {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ba-top {
+  position: absolute;
+  inset: 0;
+  /* Keep the left slice: everything right of --pos is trimmed away. */
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  margin-left: -1px;
+  background: var(--paper);
+  pointer-events: none;
+}
+
+.ba-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* the arrows */
+.ba-grip::before,
+.ba-grip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid var(--ink);
+  border-right: 2px solid var(--ink);
+}
+
+.ba-grip::before {
+  left: 11px;
+  transform: translateY(-50%) rotate(-135deg);
+}
+
+.ba-grip::after {
+  right: 11px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.ba-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.ba-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 46px;
+  height: 100%;
+}
+
+.ba-range::-moz-range-thumb {
+  width: 46px;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+}
+
+.ba-range:focus-visible ~ .ba-handle .ba-grip {
+  outline: 2px solid var(--marigold);
+  outline-offset: 3px;
+}
+
+.ba-tag {
+  position: absolute;
+  bottom: 12px;
+  font-family: var(--ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 7px 10px;
+  border-radius: 2px;
+  background: rgba(10, 10, 10, 0.72);
+  color: #e6e4df;
+  pointer-events: none;
+}
+
+.ba-tag--line {
+  left: 12px;
+}
+
+.ba-tag--color {
+  right: 12px;
+}
+
+/* ---------- homepage signup block ---------- */
+
+.signup-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  max-width: 52ch;
+}
+
+.signup-block .signup-wrap {
+  margin-top: 8px;
+}
+
+.signup-block-done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  animation: fade-up 0.5s ease both;
+}
+
+.site-foot {
+  display: flex;
+  justify-content: center;
+  padding: 44px 22px 56px;
+}
+
 /* ---------- entrance animations ---------- */
 
 .anim {
