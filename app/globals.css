@@ -932,6 +932,9 @@ a {
 
 .ba {
   position: relative;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
   width: 100%;
   border: 1px solid #2b2b2b;
   border-radius: 3px;
@@ -1007,7 +1010,9 @@ a {
   height: 100%;
   margin: 0;
   opacity: 0;
-  cursor: ew-resize;
+  /* Keyboard only: the frame's pointer handlers own mouse and touch, so the
+     input must not swallow them. It stays focusable and arrow keys still work. */
+  pointer-events: none;
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
