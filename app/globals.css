@@ -614,8 +614,10 @@ a {
 .cover {
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
+  /* The series' trim size. `contain` guarantees a cover is never cropped —
+     the title and author sit right at the edges. */
+  aspect-ratio: 357 / 466;
+  object-fit: contain;
   border: 1px solid #2b2b2b;
   border-radius: 3px;
   background: #141414;
