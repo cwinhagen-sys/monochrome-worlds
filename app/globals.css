@@ -18,8 +18,8 @@
   --marigold: #eaa92e;
 
   --display: "Kafkus", "Archivo Black", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Cormorant Garamond", Georgia, serif;
-  --ui: "Archivo", system-ui, -apple-system, sans-serif;
+  --serif: "Lora", Georgia, serif;
+  --ui: "Nunito", system-ui, -apple-system, sans-serif;
 }
 
 * {
