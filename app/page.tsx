@@ -1,5 +1,6 @@
 import { BOOKS, isOut } from "@/lib/books";
 import SiteHeader from "./components/SiteHeader";
+import AnimatedTitle from "./components/AnimatedTitle";
 import Logo from "./components/Logo";
 import BookCover from "./components/BookCover";
 import SignupSection from "./components/SignupSection";
@@ -13,12 +14,9 @@ export default function Home() {
         <section className="hero">
           <Logo />
           <p className="eyebrow anim" style={{ "--i": 0 } as React.CSSProperties}>
-            Monochrome Worlds
+            A coloring book series
           </p>
-          <h1 className="wordmark anim" style={{ "--i": 1 } as React.CSSProperties}>
-            Coloring books
-            <span className="second">for quiet worlds</span>
-          </h1>
+          <AnimatedTitle text="Monochrome" second="Worlds" delay={0.35} />
           <p className="lede anim" style={{ "--i": 2 } as React.CSSProperties}>
             Fifty of the world&apos;s places, drawn again and again — overgrown,
             gone feral, after dark, under water.
