@@ -54,9 +54,9 @@ export const BOOKS: Book[] = [
       },
       {
         slug: "burj",
-        title: "Burj Khalifa",
+        title: "Burj al Arab",
         place: "Dubai, UAE",
-        blurb: "Glass and steel gone to vine — the tallest trellis ever built.",
+        blurb: "A sail of glass gone to vine, moored in a garden of its own.",
       },
     ],
   },

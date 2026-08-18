@@ -18,8 +18,7 @@ export default function Home() {
           </p>
           <AnimatedTitle text="Monochrome" second="Worlds" delay={0.35} />
           <p className="lede anim" style={{ "--i": 2 } as React.CSSProperties}>
-            Fifty of the world&apos;s places, drawn again and again — overgrown,
-            gone feral, after dark, under water.
+            The world in black and white.
           </p>
           <div className="actions anim" style={{ "--i": 3 } as React.CSSProperties}>
             <a className="btn btn-primary" href="/books">

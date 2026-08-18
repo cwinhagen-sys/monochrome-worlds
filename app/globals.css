@@ -602,8 +602,12 @@ a {
 }
 
 .menu-item-title {
-  font-family: var(--serif);
-  font-size: 17px;
+  /* The display face, same as the hero title, so the menu reads as part of
+     the same voice rather than a separate one. */
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 15px;
   color: var(--paper);
 }
 
