@@ -98,3 +98,30 @@ export const amazonUrl = (slug: string) => AMAZON_URLS[slug] ?? "";
 export const isOut = (slug: string) => Boolean(amazonUrl(slug));
 
 export const coverPath = (slug: string) => `/covers/${slug}.png`;
+
+/**
+ * Amazon's "write a review" form for a book.
+ *
+ * Derived from the listing you already configured rather than asking for a
+ * second variable: the ASIN is right there in the /dp/ URL, and the review
+ * form takes the same storefront. An explicit override still wins, in case a
+ * link ever needs to point somewhere else.
+ */
+const REVIEW_OVERRIDES: Record<string, string> = {
+  "overgrown-worlds": process.env.NEXT_PUBLIC_REVIEW_URL_BOOK1 ?? "",
+};
+
+export function reviewUrl(slug: string): string {
+  const override = REVIEW_OVERRIDES[slug];
+  if (override) return override;
+
+  const listing = amazonUrl(slug);
+  const asin = listing.match(/\/(?:dp|gp\/product)\/([A-Z0-9]{10})/i)?.[1];
+  if (!asin) return "";
+
+  try {
+    return `https://${new URL(listing).host}/review/create-review?asin=${asin}`;
+  } catch {
+    return "";
+  }
+}

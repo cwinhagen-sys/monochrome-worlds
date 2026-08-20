@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { REVIEW_URL_BOOK1 } from "@/lib/links";
+import { reviewUrl } from "@/lib/books";
 
 export const metadata: Metadata = {
   title: "Leave a review — Overgrown Worlds",
@@ -8,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function Review1() {
+  const review = reviewUrl("overgrown-worlds");
+
   return (
     <main className="shell">
       <div className="stack">
@@ -29,8 +31,8 @@ export default function Review1() {
       </p>
 
       <div className="actions">
-        {REVIEW_URL_BOOK1 ? (
-          <a className="btn btn-primary" href={REVIEW_URL_BOOK1}>
+        {review ? (
+          <a className="btn btn-primary" href={review}>
             Write a review on Amazon
           </a>
         ) : (
